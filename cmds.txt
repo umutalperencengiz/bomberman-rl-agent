@@ -1,10 +1,10 @@
 python -m bbrl.train_loop --config configs/umut_linear.yaml --card EK-2 --seeds 10
 
-python -m bbrl.eval --agent umut_linear_agent --card EK-2 --seeds 10
+python -m bbrl.eval --agent umut_dueling_agent --card EK-2 --seeds 10
 
-python -m bbrl.trace --agent umut_linear_agent --scenario classic --opponents rule_based_agent irmak_umut irmak_umut --rounds 10 --csv runs/trace_umut.csv
+python -m bbrl.trace --agent umut_dueling_agent --scenario classic --opponents rule_based_agent irmak_umut irmak_umut --rounds 10 --csv runs/trace_umut.csv
 
-python -m bbrl.duel --a Qlearned_agent --b irmak_umut --seeds 10
+python -m bbrl.duel --a umut_dueling_agent --b irmak_umut --seeds 10
 
-python main.py play --agents rule_based_agent irmak_umut irmak_umut umut_linear_agent --scenario classic --n-rounds 10
+python main.py play --agents rule_based_agent irmak_umut irmak_umut umut_dueling_agent --scenario classic --n-rounds 10
 
