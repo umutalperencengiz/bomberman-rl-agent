@@ -1,0 +1,10 @@
+# Turnuva ortami icin ek bagimliliklar (PDF s.11: Dockerfile'da varsayilan
+# olmayan kutuphaneler burada belirtilmeli).
+#
+# Dockerfile zaten kuruyor: numpy, scipy, pytorch, scikit-learn, pygame, tqdm.
+# Asagidakiler yine de acikca yaziliyor -- ajan bunlar olmadan calismaz.
+numpy
+torch
+# config.json kullaniyoruz (vendor.py YAML'i JSON'a cevirir), bu yuzden
+# PyYAML CALISMA ANINDA GEREKMEZ; yalnizca egitim/gelistirme icin.
+PyYAML

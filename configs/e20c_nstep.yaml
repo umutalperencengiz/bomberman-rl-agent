@@ -1,0 +1,36 @@
+name: e20c_nstep
+model: dqn
+features: v0c_task4
+rewards: r07_objective
+shaping: p00_none
+shaping_gamma: 1.0
+buffer: uniform
+buffer_size: 500000
+curriculum:
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  - coin_collector_agent
+  - Qlearned_agent
+  n_rounds: 14000
+eps_start: 1.0
+eps_end: 0.05
+eps_decay_rounds: 4200
+gamma: 0.95
+batch_size: 64
+train_every: 4
+n_step: 3
+symmetry: true
+hparams:
+  lr: 0.0003
+  device: cpu
+  hidden:
+  - 256
+  - 256
+  double: true
+  dueling: true
+  target_sync: 1000
+  updates_per_round: 8
+  save_every_rounds: 400
+seed: 0
+notes: 'EXP-020: yalnizca 3-adimli return. BUTCE 24000 -> 14000, eps_decay 7200 -> 4200 (ayni %30 orani). Gerekce: e19b_types egitim egrisi ~12000 turda duzlesiyor (2.18 -> 2.41, gurultu icinde) ve EXP-013''te butce x2 anlamsiz cikmisti. Dort kolda da AYNI, yani kol-ici karsilastirma bozulmuyor. Kazanan cikarsa 24000 turda tekrarlanacak.'

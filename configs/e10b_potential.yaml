@@ -1,0 +1,26 @@
+name: e10b_potential
+model: tabular_q
+features: v0b_task2
+rewards: r04_ratio
+shaping: p01_crate
+shaping_gamma: 1.0
+buffer: uniform
+buffer_size: 300000
+curriculum:
+- scenario: classic
+  opponents: []
+  n_rounds: 6000
+eps_start: 1.0
+eps_end: 0.05
+eps_decay_rounds: 3000
+gamma: 0.95
+batch_size: 64
+train_every: 2
+symmetry: false
+hparams:
+  lr: 0.15
+  updates_per_round: 8
+  save_every_rounds: 200
+seed: 0
+notes: 'EXP-010 kumulatif ablation: + potansiyel-tabanli sandik mesafesi (salinim
+  ilaci). Taban e10a. Birincil metrik EK-5 coins_per_round (gercek oyun skoru).'

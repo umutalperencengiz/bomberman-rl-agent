@@ -1,0 +1,59 @@
+name: e19b_types_s2
+model: dqn
+features: v0c_task4
+rewards: r07_objective
+shaping: p00_none
+shaping_gamma: 1.0
+buffer: uniform
+buffer_size: 500000
+curriculum:
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  - coin_collector_agent
+  - Qlearned_agent
+  n_rounds: 24000
+eps_start: 1.0
+eps_end: 0.05
+eps_decay_rounds: 7200
+gamma: 0.95
+batch_size: 64
+train_every: 4
+symmetry: true
+hparams:
+  lr: 0.0003
+  device: cpu
+  hidden:
+  - 256
+  - 256
+  double: true
+  dueling: true
+  target_sync: 1000
+  updates_per_round: 8
+  save_every_rounds: 400
+seed: 2
+notes: >-
+  TURNUVA ADAYI (2026-08-31, e17b_objective_s2'nin yerine gecti).
+
+  EK-2 (turnuva vekili): config ortalamasi 4 egitim seed'inde 4.288 +- 0.155;
+  referans rule_based_agent 3.317 +- 0.247 -- guven araliklari ortusmuyor.
+  Bu dosyadaki model seed 2, secim seed'lerinde (0-9) 4.416.
+
+  SECIM YANLILIGI KONTROLU: seed 2, EK-2 skoruna BAKILARAK secildi. Bu yuzden
+  hic kullanilmamis eval seed'lerinde (10-19) yeniden olculdu -> 4.210.
+  Dusus 0.206, yani secim primi kucuk; referansin ustunde kalmaya devam ediyor.
+
+  NEDEN e17b DEGIL: e17b yalnizca 3x rule_based'e karsi egitildi. Turnuvada
+  karsimizda rule_based degil BASKA TAKIMLARIN ajanlari olacak ve tek bir
+  rakip tarzina asiri uyum somut bir risk (Umut'un Qlearned_agent'ina karsi
+  kafa kafaya acigimiz vardi). e19b uc FARKLI tipe karsi ayni anda egitildi:
+  rule_based (agresif bombaci) + coin_collector (bombasiz toplayici) +
+  Qlearned_agent (ogrenilmis lineer politika). EXP-019, sadece-rule_based
+  kontrolune gore +0.254 kazanc olcuyor.
+
+  Rakipler AYNI ANDA masada; asamalar arasi degistirmek zarar veriyor
+  (felaket unutma, EXP-018R'de -0.490).
+
+  Mimari: DQN (MLP 256x256, double + dueling) + v0c_task4 rakip farkindalikli
+  feature + D4 simetri augmentation (8x veri) + r07_objective (odul gercek
+  oyun skoruna hizalanmis: coin 2.0, kill 5.0, sandik 0.15).

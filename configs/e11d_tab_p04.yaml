@@ -1,0 +1,26 @@
+name: e11d_tab_p04
+model: tabular_q
+features: v0b_task2
+rewards: r04_ratio
+shaping: p04_crate_progress
+shaping_gamma: 1.0
+buffer: uniform
+buffer_size: 300000
+curriculum:
+- scenario: classic
+  opponents: []
+  n_rounds: 6000
+eps_start: 1.0
+eps_end: 0.05
+eps_decay_rounds: 3000
+gamma: 0.95
+batch_size: 64
+train_every: 2
+symmetry: false
+hparams:
+  lr: 0.15
+  updates_per_round: 8
+  save_every_rounds: 200
+seed: 0
+notes: 'EXP-011 ek: e11a ile TEK farki duzeltilmis potansiyel (p04). EXP-010''da p01_crate
+  sandik yikmayi -0.600 ile cezalandiriyordu; p04 +0.400 veriyor.'

@@ -1,0 +1,37 @@
+batch_size: 64
+buffer: uniform
+buffer_size: 500000
+curriculum:
+- n_rounds: 14000
+  opponents:
+  - rule_based_agent
+  - coin_collector_agent
+  - Qlearned_agent
+  scenario: classic
+eps_decay_rounds: 4200
+eps_end: 0.05
+eps_start: 1.0
+features: v0c_task4
+gamma: 0.95
+hparams:
+  device: cpu
+  double: true
+  dueling: true
+  hidden:
+  - 512
+  - 512
+  lr: 0.0003
+  save_every_rounds: 400
+  target_sync: 1000
+  updates_per_round: 8
+model: dqn
+n_step: 1
+name: e24b_wide
+notes: 'EXP-024: hidden [256,256] -> [512,512]. KONTROL = e20a_base (ayni butce, ayni
+  her sey). Tek degisken bu dosyadaki alan.'
+rewards: r07_objective
+seed: 0
+shaping: p00_none
+shaping_gamma: 1.0
+symmetry: true
+train_every: 4

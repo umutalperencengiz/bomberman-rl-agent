@@ -1,0 +1,33 @@
+name: e13a_mlp_sym
+model: dqn
+features: v0b_task2
+rewards: r04_ratio
+shaping: p00_none
+shaping_gamma: 1.0
+buffer: uniform
+buffer_size: 500000
+curriculum:
+- scenario: classic
+  opponents: []
+  n_rounds: 12000
+eps_start: 1.0
+eps_end: 0.05
+eps_decay_rounds: 3600
+gamma: 0.95
+batch_size: 64
+train_every: 4
+symmetry: true
+hparams:
+  lr: 0.0003
+  device: cpu
+  hidden:
+  - 256
+  - 256
+  double: true
+  dueling: true
+  target_sync: 1000
+  updates_per_round: 8
+  save_every_rounds: 400
+seed: 0
+notes: 'EXP-013 ANA: e12c (en iyi, 5.205 coin) + D4 simetri. EXP-012''de simetri CNN''i
+  1.589->4.671 yapmisti; artik duz vektorde de calisiyor.'

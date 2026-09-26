@@ -1,0 +1,108 @@
+name: e18b_mixed_opp
+model: dqn
+features: v0c_task4
+rewards: r07_objective
+shaping: p00_none
+shaping_gamma: 1.0
+buffer: uniform
+buffer_size: 500000
+curriculum:
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  - rule_based_agent
+  - rule_based_agent
+  n_rounds: 2400
+- scenario: classic
+  opponents: []
+  n_rounds: 800
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  n_rounds: 800
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  - rule_based_agent
+  - rule_based_agent
+  n_rounds: 2400
+- scenario: classic
+  opponents: []
+  n_rounds: 800
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  n_rounds: 800
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  - rule_based_agent
+  - rule_based_agent
+  n_rounds: 2400
+- scenario: classic
+  opponents: []
+  n_rounds: 800
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  n_rounds: 800
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  - rule_based_agent
+  - rule_based_agent
+  n_rounds: 2400
+- scenario: classic
+  opponents: []
+  n_rounds: 800
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  n_rounds: 800
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  - rule_based_agent
+  - rule_based_agent
+  n_rounds: 2400
+- scenario: classic
+  opponents: []
+  n_rounds: 800
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  n_rounds: 800
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  - rule_based_agent
+  - rule_based_agent
+  n_rounds: 2400
+- scenario: classic
+  opponents: []
+  n_rounds: 800
+- scenario: classic
+  opponents:
+  - rule_based_agent
+  n_rounds: 800
+eps_start: 1.0
+eps_end: 0.05
+eps_decay_rounds: 7200
+gamma: 0.95
+batch_size: 64
+train_every: 4
+symmetry: true
+hparams:
+  lr: 0.0003
+  device: cpu
+  hidden:
+  - 256
+  - 256
+  double: true
+  dueling: true
+  target_sync: 1000
+  updates_per_round: 8
+  save_every_rounds: 400
+seed: 0
+notes: 'EXP-018 ANA: 3 rakip / rakipsiz / 1 rakip bloklari donusumlu. Ajan hem kalabalik
+  hem yalniz durumlari gorsun.'

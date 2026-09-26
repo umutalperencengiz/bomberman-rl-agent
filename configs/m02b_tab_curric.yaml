@@ -1,0 +1,28 @@
+name: m02b_tab_curric
+model: tabular_q
+features: v0b_task2
+rewards: r03_task2
+buffer: uniform
+buffer_size: 300000
+curriculum:
+- scenario: coin-heaven
+  opponents: []
+  n_rounds: 1500
+- scenario: classic
+  opponents: []
+  n_rounds: 6000
+eps_start: 1.0
+eps_end: 0.05
+eps_decay_rounds: 3000
+gamma: 0.95
+batch_size: 64
+train_every: 2
+symmetry: false
+hparams:
+  updates_per_round: 8
+  save_every_rounds: 200
+  lr: 0.15
+seed: 0
+notes: 'EXP-009 Task 2: coin-heaven -> classic. Feature v0b_task2 (sandik yonu + bomba
+  kurtulabilirligi). Odul r03_task2 (olum -15 > bos hayatta kalma -8, pervers tesvik
+  yok).'

@@ -1,0 +1,26 @@
+name: umut_dueling_leak
+model: umut_dueling_q
+features: v1_handcrafted
+rewards: r10_umut_combat
+shaping: p00_none
+buffer: uniform
+buffer_size: 6000
+seed: 0
+gamma: 0.95
+
+curriculum:
+  - {scenario: classic, opponents: [], n_rounds: 6000}
+  - {scenario: classic, opponents: [irmak_umut], n_rounds: 6000}
+  - {scenario: classic, opponents: [rule_based_agent, coin_collector_agent, irmak_umut], n_rounds: 6000}
+  - {scenario: classic, opponents: [rule_based_agent, rule_based_agent, rule_based_agent], n_rounds: 6000}
+
+hparams:
+  lr: 0.0005
+  grad_clip: 5.0
+  batch_size: 64
+  train_every: 4
+  hidden1: 64
+  hidden2: 32
+  target_update_every: 500
+  n_steps: 3
+  save_every_rounds: 6000
